@@ -37,7 +37,7 @@ public class EnemyBlack : MonoBehaviour {
 			enable = true;
 		} 
 		else if (coll.tag == "WayPoint2")
-		{
+		{ 
 			enable = false;
 		}
 	}
