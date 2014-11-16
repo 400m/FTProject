@@ -13,24 +13,32 @@ public class EnemyBlack : MonoBehaviour {
 	void Start () {
 
 		NavMesh = GetComponent<NavMeshAgent> ();
+		enable = false;
 	}
 	
 	// Update is called once per frame
 	void Update () {
 	
-		NavMesh.SetDestination(movePoint1.position);
-		if (this.transform.position == movePoint1.position) 
+		if (enable == false) 
 		{
-			NavMesh.SetDestination(movePoint2.position);
+			NavMesh.SetDestination (movePoint1.position);
 		}
-		else if(this.transform.position == movePoint2.position)
+		else if (enable == true) 
 		{
-			NavMesh.SetDestination(movePoint1.position);
+			NavMesh.SetDestination (movePoint2.position);
 		}
+		Debug.Log (enable);
 	}
 
 	void OnTriggerEnter(Collider coll)
 	{
-		if(coll.tag)
+		if (coll.tag == "WayPoint1") 
+		{
+			enable = true;
+		} 
+		else if (coll.tag == "WayPoint2")
+		{
+			enable = false;
+		}
 	}
 }
